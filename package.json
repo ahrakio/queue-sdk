@@ -1,0 +1,27 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.10.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.116",
+    "archiver": "^3.0.0",
+    "expose-loader": "^0.7.5",
+    "form-data": "^2.3.2",
+    "lodash": "^4.17.11",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^5.2.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.1",
+    "webpackbar": "^2.6.3"
+  }
+}
