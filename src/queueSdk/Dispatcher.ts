@@ -6,14 +6,16 @@ import {QueueApiImpl} from "./QueueApiImpl";
 import {TaskBean} from "./TaskBean";
 import {Consts} from "./Consts";
 import {TaskCacheImple} from "./TaskCacheImpl";
-
+import {ConnectionInfoBean} from "./ConnectionInfoBean";
 
 export class Dispatcher {
 
 	private compiler: Compiler;
+	private connection: ConnectionInfoBean;
 
-	constructor() {
+	constructor(connection: ConnectionInfoBean) {
 		this.compiler = new WebpackCompiler();
+		this.connection = connection;
 	}
 
 	private compileAndSendTask(task: Task, taskExist) {
@@ -25,7 +27,7 @@ export class Dispatcher {
 						.then(success => {
 							if (success) {
 								try {
-									QueueApiImpl.sendTask(Consts.taskZipPath, new TaskBean(taskExist, task.constructor.name, task.fileName), task);
+									QueueApiImpl.sendTask(Consts.taskZipPath, new TaskBean(taskExist, task.constructor.name, task.fileName), task, this.connection);
 									TaskHandler.cleanFiles();
 								} catch (e) {
 									console.log('failed to clean files');
@@ -43,7 +45,7 @@ export class Dispatcher {
 	}
 
 	private sendTask(task: Task, taskExist) {
-		QueueApiImpl.sendTask(Consts.taskZipPath, new TaskBean(taskExist, task.constructor.name, task.fileName), task);
+		QueueApiImpl.sendTask(Consts.taskZipPath, new TaskBean(taskExist, task.constructor.name, task.fileName), task, this.connection);
 		TaskHandler.cleanFiles();
 	}
 

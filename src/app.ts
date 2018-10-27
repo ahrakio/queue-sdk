@@ -10,6 +10,8 @@ import {TaskImpl} from "./taskImpl";
 import {Consts} from "./queueSdk/Consts";
 import {WebpackCompiler} from "./queueSdk/WebpackCompiler";
 import {sep} from "path";
+import {Utils} from "./queueSdk/Utils";
+import {ConnectionInfoBean} from "./queueSdk/ConnectionInfoBean";
 
 
 // const request = require('request');
@@ -17,7 +19,8 @@ import {sep} from "path";
 const task = new TaskImpl();
 // QueueApiImpl.test();
 // task.run();
-let dispatcher = new Dispatcher();
+let temp = Utils.findFile('app11.ts');
+let dispatcher = new Dispatcher(new ConnectionInfoBean('http://localhost', 3000, "http", 'queue/addTask'));
 dispatcher.dispatch(task);
 // let com = new WebpackCompiler();
 // let t = com.compile(task);
